@@ -12,12 +12,11 @@ import { getProduct } from "../redux/slices/productSlice";
 
 const ProductPage = () => {
   const { product, loading } = useAppSelector((state) => state.product);
-  const params = useParams();
-  const [ids, setIds] = useState()
+  const params = useParams<{ id?: string }>();
 
+  const [ids, setIds] = useState<number[]>([]);
 
   const dispatch = useAppDispatch();
-
 
 
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -26,10 +25,12 @@ const ProductPage = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    setIds(params.id)
+    if (params.id) {
+      setIds([parseInt(params.id)]);
+    }
     dispatch(getProduct(ids));
     nameRef.current?.focus();
-  }, [dispatch, ids]);
+  }, [dispatch, params.id]);
 
   const closeModal = () => {
     setIsModalOpen(false);
