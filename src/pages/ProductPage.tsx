@@ -4,7 +4,7 @@ import { Button, Col, Flex, Input, Modal, Row, Spin, Form } from "antd";
 
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { CategoryType } from "../types/category";
+import { ProductType } from "../types/product";
 import request from "../server";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/card/ProductCrad";
@@ -44,7 +44,7 @@ const ProductPage = () => {
 
   const handleOk = async () => {
     try {
-      const values: CategoryType = await form.validateFields();
+      const values: ProductType = await form.validateFields();
       if (selected === null) {
         await request.post(`/category/${params.id}/product`, values);
       } else {
@@ -119,7 +119,7 @@ const ProductPage = () => {
           form={form}
           autoComplete="off"
         >
-          <Form.Item<CategoryType>
+          <Form.Item<ProductType>
             label="Name"
             name="name"
             rules={[{ required: true, message: "Please fill!" }]}
@@ -127,7 +127,7 @@ const ProductPage = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item<CategoryType>
+          <Form.Item<ProductType>
             label="Image"
             name="image"
             rules={[{ required: true, message: "Please fill!" }]}
