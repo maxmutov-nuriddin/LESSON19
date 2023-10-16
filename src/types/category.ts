@@ -1,7 +1,9 @@
 export interface CategoryType {
-  id: string;
+  id: number;
   name: string;
   image: string;
+  editCategory: (id: number) => void;
+  deleteCategory: (id: number) => void;
 }
 
 export interface CategoryResponseType extends CategoryType {

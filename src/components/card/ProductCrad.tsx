@@ -4,6 +4,7 @@ import { message, Popconfirm } from 'antd';
 
 const { Meta } = Card;
 
+
 const ProductCard = ({ name, image, id, description, discount, price, editCategory, deleteCategory }: ProductType) => {
   const confirm = () => {
     deleteCategory(id)
